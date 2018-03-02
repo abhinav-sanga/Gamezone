@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h3>Add Amount</h3>
+        {{#if hasErrors}}
+            <div class="alert alert-danger">
+                {{# each messages}}
+                    <p>{{this}}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+        <form action="/card/rech" method="post" id="rechform">
+            <div class="form-group">
+                <label for="cardnum">Card Number</label>
+                <input type="number" id="cardnum" name="cardnum" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amountRech" name="amountRech" class="form-control">
+            </div>
+            <fieldset>
+                <input type="radio" id="amount1"
+                       name="amount" value="100" onclick="myFunction(this.value)">
+                <label for="amountChoice1">100</label>
+                <input type="radio" id="amount2"
+                       name="amount" value="200" onclick="myFunction(this.value)">
+                <label for="amount2">200</label>
+                <input type="radio" id="amount3"
+                       name="amount" value="500" onclick="myFunction(this.value)">
+                <label for="amount3">500</label>
+                <input type="radio" id="amount4"
+                       name="amount" value="1000" onclick="myFunction(this.value)">
+                <label for="amount4">1000</label>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Recharge</button>
+            <input type="button" class="btn btn-primary" value="Clear" onclick="this.form.reset()">
+        </form>
+        <br>
+        <h3>Existing Amount</h3>
+        <form action="" method="get">
+            <div class="form-group">
+                <label for="remAmount">Existing Amount</label>
+                <input type="number" id="remAmount" name="remAmount" class="form-control">
+            </div>
+        </form>
+    </div>
+</div>
