@@ -11,8 +11,8 @@ router.post('/rech', function(req,res,next){
         if(err){
             res.send(err);
         }
-        req.flash('Successfully Recharged!', message);
-        res.send(card);
+        req.flash('notice', 'Successfully Recharged!');
+        res.render('user/profile', {flash: {notice: req.flash('notice')}});
     });
 });
 

@@ -45,16 +45,6 @@ router.post('/signin', passport.authenticate('local-signin', {
     failureFlash: true
 }));
 
-router.get('/admin', function (req, res, next) {
-    var messages = req.flash('error');
-    res.render('user/admin', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
-});
-
-router.post('/admin', passport.authenticate('local-siginup', {
-    successRedirect: '/user/adminprofile',
-    failureRedirect: '/user/admin',
-    failureFlash: true
-}));
 
 module.exports = router;
 
@@ -79,10 +69,9 @@ function ifAdmin(req,res,next) {
     next();
 }
 
-/* function currentUser(req, res, next) {
-    if(req.body.role === 'admin'){
-        return next();
+function ifOwner(req, res, next){
+    if(req.user.isOwner === true){
+        return res.render('user/ownerprofile');
     }
-    res.redirect('/');
-    console.log(req.body.username);
-}  */
+    next();
+}
