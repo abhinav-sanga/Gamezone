@@ -85,4 +85,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+var http = require('http');
+setInterval(function() {
+    http.get("https://starktech05.herokuapp.com");
+    console.log("executed");
+}, 300000); // every 5 minutes (300000)
+
 module.exports = app;
