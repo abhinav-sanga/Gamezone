@@ -1,44 +1,92 @@
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <h3>Add Amount</h3>
-        {{#if flash.notice}}
-            <div class="alert alert-success">
-                    <p>{{flash.notice}}</p>
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab-1" role="tab" data-toggle="tab">Recharge </a></li>
+        <li><a href="#tab-2" role="tab" data-toggle="tab">Today's collection</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" role="tabpanel" id="tab-1">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <h3>Add Amount</h3>
+                    {{#if hasErrors}}
+                        <div class="alert alert-danger">
+                            {{# each messages}}
+                                <p>{{this}}</p>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+                    {{#if flash.notice}}
+                        <div class="alert alert-success">
+                            <p>{{flash.notice}}</p>
+                        </div>
+                    {{/if}}
+                    <form action="/card/rech" method="post" id="rechform">
+                        <div class="form-group">
+                            <label for="cardnum">Card Number</label>
+                            <input type="number" id="cardnum" name="cardnum" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="number" id="amountRech" name="amountRech" class="form-control">
+                        </div>
+                        <!--<fieldset>
+                            <input type="radio" id="amount1"
+                                   name="amount" value="100" onclick="myFunction(this.value)">
+                            <label for="amountChoice1">100</label>
+                            <input type="radio" id="amount2"
+                                   name="amount" value="200" onclick="myFunction(this.value)">
+                            <label for="amount2">200</label>
+                            <input type="radio" id="amount3"
+                                   name="amount" value="500" onclick="myFunction(this.value)">
+                            <label for="amount3">500</label>
+                            <input type="radio" id="amount4"
+                                   name="amount" value="1000" onclick="myFunction(this.value)">
+                            <label for="amount4">1000</label>
+                        </fieldset> -->
+                        <button type="submit" class="btn btn-primary">Recharge</button>
+                        <input type="button" class="btn btn-primary" value="Clear" onclick="this.form.reset()">
+                    </form>
+                    <br>
+                    <h3>Existing Amount</h3>
+                    <form action="" method="get">
+                        <div class="form-group">
+                            <label for="remAmount">Existing Amount</label>
+                            <input type="number" id="remAmount" name="remAmount" class="form-control">
+                        </div>
+                    </form>
+                </div>
             </div>
-        {{/if}}
-        <form action="/card/rech" method="post" id="rechform">
-            <div class="form-group">
-                <label for="cardnum">Card Number</label>
-                <input type="number" id="cardnum" name="cardnum" class="form-control">
+        </div>
+        <div class="tab-pane" role="tabpanel" id="tab-2">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="form-group">
+                        <label for="speedball">Speed Ball</label>
+                        <input type="text" id="speedball" name="speedball" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="basketball">Basket Ball</label>
+                        <input type="text" id="basketball" name="basketball" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="airhockey">Air Hockey</label>
+                        <input type="text" id="airhockey" name="airhockey" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="dance">Dance</label>
+                        <input type="text" id="dance" name="dance" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="speedball">Catch Light</label>
+                        <input type="text" id="catchlight" name="catchlight" class="form-control">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" />
+                        <span class="input-group-addon">-</span>
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="amount">Amount</label>
-                <input type="number" id="amountRech" name="amountRech" class="form-control">
-            </div>
-            <!-- <fieldset>
-                <input type="radio" id="amount1"
-                       name="amount" value="100" onclick="myFunction(this.value)">
-                <label for="amountChoice1">100</label>
-                <input type="radio" id="amount2"
-                       name="amount" value="200" onclick="myFunction(this.value)">
-                <label for="amount2">200</label>
-                <input type="radio" id="amount3"
-                       name="amount" value="500" onclick="myFunction(this.value)">
-                <label for="amount3">500</label>
-                <input type="radio" id="amount4"
-                       name="amount" value="1000" onclick="myFunction(this.value)">
-                <label for="amount4">1000</label>
-            </fieldset> -->
-            <button type="submit" class="btn btn-primary">Recharge</button>
-            <input type="button" class="btn btn-primary" value="Clear" onclick="this.form.reset()">
-        </form>
-        <br>
-        <h3>Existing Amount</h3>
-        <form action="" method="get">
-            <div class="form-group">
-                <label for="remAmount">Existing Amount</label>
-                <input type="number" id="remAmount" name="remAmount" class="form-control">
-            </div>
-        </form>
+        </div>
     </div>
 </div>
