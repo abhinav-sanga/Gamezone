@@ -24,7 +24,7 @@ router.post('/rech', function(req,res,next){
         }
         else {
             req.flash('notice', 'Successfully Recharged!');
-            res.render('user/profile', {flash: {notice: req.flash('notice')}});
+            res.render('/user/profile', {flash: {notice: req.flash('notice')}});
         }});
 });
 

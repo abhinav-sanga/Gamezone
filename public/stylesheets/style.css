@@ -5,3 +5,12 @@ a:hover {
 .tab-content {
     margin-top: 40px;
 }
+
+#rates {
+    padding-bottom: 15px;
+}
+
+.btn {
+    margin-right: 5px;
+}
+

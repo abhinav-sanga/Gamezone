@@ -1,4 +1,4 @@
-<div>
+<div ng-app = "myApp" ng-controller="myCtrl">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#tab-1" role="tab" data-toggle="tab">Recharge </a></li>
         <li><a href="#tab-2" role="tab" data-toggle="tab">Today's collection</a></li>
@@ -29,22 +29,18 @@
                             <label for="amount">Amount</label>
                             <input type="number" id="amountRech" name="amountRech" class="form-control">
                         </div>
-                        <!--<fieldset>
-                            <input type="radio" id="amount1"
-                                   name="amount" value="100" onclick="myFunction(this.value)">
-                            <label for="amountChoice1">100</label>
-                            <input type="radio" id="amount2"
-                                   name="amount" value="200" onclick="myFunction(this.value)">
-                            <label for="amount2">200</label>
-                            <input type="radio" id="amount3"
-                                   name="amount" value="500" onclick="myFunction(this.value)">
-                            <label for="amount3">500</label>
-                            <input type="radio" id="amount4"
-                                   name="amount" value="1000" onclick="myFunction(this.value)">
-                            <label for="amount4">1000</label>
-                        </fieldset> -->
+                        <div id='rates'>
+                            <label for="amountChoice1" class="radio-inline"><input type="radio" id="amount1" name="amount" value="100" onclick="myFunction(this.value)">100</label>
+
+                            <label for="amount2" class="radio-inline"><input type="radio" id="amount2" name="amount" value="200" onclick="myFunction(this.value)">200</label>
+
+                            <label for="amount3" class="radio-inline"><input type="radio" id="amount3" name="amount" value="500" onclick="myFunction(this.value)">500</label>
+
+                            <label for="amount4" class="radio-inline"><input type="radio" id="amount4" name="amount" value="1000" onclick="myFunction(this.value)">1000</label>
+                        </div>
                         <button type="submit" class="btn btn-primary">Recharge</button>
                         <input type="button" class="btn btn-primary" value="Clear" onclick="this.form.reset()">
+                        <button type="button" class="btn btn-primary">Print</button>
                     </form>
                     <br>
                     <h3>Existing Amount</h3>
@@ -59,31 +55,54 @@
         </div>
         <div class="tab-pane" role="tabpanel" id="tab-2">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="form-group">
+                <div class="col-md-4 col-md-offset-4 row">
+                    <div class="form-group col-xs-9">
                         <label for="speedball">Speed Ball</label>
                         <input type="text" id="speedball" name="speedball" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-xs-3">
+                        <label for="tapcount">Count</label>
+                        <input type="number" id="tapcount" name="tapcount" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-offset-4 row">
+                    <div class="form-group col-xs-9">
                         <label for="basketball">Basket Ball</label>
                         <input type="text" id="basketball" name="basketball" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-xs-3">
+                        <label for="tapcount">Count</label>
+                        <input type="number" id="tapcount" name="tapcount" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-offset-4 row">
+                    <div class="form-group col-xs-9">
                         <label for="airhockey">Air Hockey</label>
                         <input type="text" id="airhockey" name="airhockey" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-xs-3">
+                        <label for="tapcount">Count</label>
+                        <input type="number" id="tapcount" name="tapcount" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-offset-4 row">
+                    <div class="form-group col-xs-9">
                         <label for="dance">Dance</label>
                         <input type="text" id="dance" name="dance" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-xs-3">
+                        <label for="tapcount">Count</label>
+                        <input type="number" id="tapcount" name="tapcount" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-offset-4 row">
+                    <div class="form-group col-xs-9">
                         <label for="speedball">Catch Light</label>
                         <input type="text" id="catchlight" name="catchlight" class="form-control">
                     </div>
-                    <div class="input-group">
-                        <input type="text" class="form-control" />
-                        <span class="input-group-addon">-</span>
-                        <input type="text" class="form-control" />
+                    <div class="form-group col-xs-3">
+                        <label for="tapcount">Count</label>
+                        <input type="number" id="tapcount" name="tapcount" class="form-control">
                     </div>
                 </div>
             </div>

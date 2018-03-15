@@ -7,6 +7,22 @@
     <div class="tab-content">
         <div class="tab-pane active" role="tabpanel" id="tab-1"></div>
         <div class="tab-pane" role="tabpanel" id="tab-2"></div>
-        <div class="tab-pane" role="tabpanel" id="tab-3"></div>
+        <div class="tab-pane" role="tabpanel" id="tab-3">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <form action="/user/collections" method="get">
+                        <div class="form-group">
+                            <label for="fromdate">From:</label>
+                            <input type="date" id="fromdate" name="fromdate" class="form-control" placeholder="dd-mm-yyyy">
+                        </div>
+                        <div class="form-group">
+                            <label for="todate">To:</label>
+                            <input type="date" id="todate" name="todate" class="form-control" placeholder="dd-mm-yyyy">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

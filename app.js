@@ -10,6 +10,9 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
+var server = require('./bin/www');
+var five = require('johnny-five');
+var etherport = require('etherport');
 
 var index = require('./routes/index');
 var userRoutes = require('./routes/user');
@@ -18,7 +21,7 @@ var cardRoutes = require('./routes/card');
 var app = express();
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://starktech:starktech55@ds247178.mlab.com:47178/gamezone');
+mongoose.connect('mongodb://127.0.0.1:27017/gamezone');
 var db = mongoose.connection;
 db.on('error',console.error);
 db.once('open',function(){
@@ -60,6 +63,7 @@ app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated();
     res.locals.session = req.session;
     res.locals.currentUser = req.user;
+    res.locals.dbs = db.collection('users');
     next();
 });
 
@@ -84,6 +88,17 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+/* var board = new five.Board({
+    port: new etherport(3030),
+    repl: false
+});
+board.on('message', function (event) {
+console.log(event.data);
+});
+*/
+
 
 var http = require('http');
 setInterval(function() {
