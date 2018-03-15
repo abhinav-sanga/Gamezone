@@ -21,7 +21,8 @@ var cardRoutes = require('./routes/card');
 var app = express();
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/gamezone');
+mongoose.connect('mongodb://starktech:starktech55@ds247178.mlab.com:47178/gamezone');
+//mongoose.connect('mongodb://127.0.0.1:27017/gamezone');
 var db = mongoose.connection;
 db.on('error',console.error);
 db.once('open',function(){
