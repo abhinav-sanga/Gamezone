@@ -1,0 +1,9 @@
+<div class="messages">
+{{#if messages}}
+    <div class="alert alert-danger">
+        {{# each messages}}
+            <p>{{this}}</p>
+        {{/each}}
+    </div>
+{{/if}}
+</div>

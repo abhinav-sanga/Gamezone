@@ -10,6 +10,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
+
 var server = require('./bin/www');
 var five = require('johnny-five');
 var etherport = require('etherport');
@@ -21,8 +22,8 @@ var cardRoutes = require('./routes/card');
 var app = express();
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://starktech:starktech55@ds247178.mlab.com:47178/gamezone');
-//mongoose.connect('mongodb://127.0.0.1:27017/gamezone');
+//mongoose.connect('mongodb://starktech:starktech55@ds247178.mlab.com:47178/gamezone');
+mongoose.connect('mongodb://127.0.0.1:27017/gamezone');
 var db = mongoose.connection;
 db.on('error',console.error);
 db.once('open',function(){
@@ -44,8 +45,8 @@ app.use(validator());
 app.use(cookieParser());
 app.use(session({
     secret: 'mysupersecret',
-    resave:false,
-    saveUninitialized: false,
+    resave:true,
+    saveUninitialized: true,
     store: new MongoStore({mongooseConnection: mongoose.connection }),
     cookie: { maxAge: 180 * 60 * 1000 }
 }));
@@ -65,8 +66,26 @@ app.use(function (req, res, next) {
     res.locals.session = req.session;
     res.locals.currentUser = req.user;
     res.locals.dbs = db.collection('users');
+    res.locals.messages = require('express-messages')(req,res);
     next();
 });
+
+app.use(validator({
+    errorFormatter: function (param,msg,value) {
+        var namespace = param.split('.'),
+            root = namespace.shift(),
+            formParam = root;
+
+        while(namespace.length){
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param: formParam,
+            msg: msg,
+            value: value
+        };
+    }
+}));
 
 app.use('/card',cardRoutes);
 app.use('/user', userRoutes);
@@ -100,11 +119,11 @@ console.log(event.data);
 });
 */
 
-
+/*
 var http = require('http');
 setInterval(function() {
     http.get("http://starktech05.herokuapp.com");
     console.log("executed");
 }, 300000); // every 5 minutes (300000)
-
+*/
 module.exports = app;

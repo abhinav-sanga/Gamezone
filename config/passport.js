@@ -19,6 +19,7 @@ passport.use('local-signup', new LocalStrategy({
 }, function (req, email, password, done) {
     req.checkBody('email','Invalid Email').notEmpty().isEmail();
     req.checkBody('password','Invalid Password').notEmpty().isLength({min:5});
+    req.checkBody('confirm', 'Passwords do not match!').equals(req.body.password);
     var errors = req.validationErrors();
     if(errors){
         var messages = [];
@@ -42,11 +43,13 @@ passport.use('local-signup', new LocalStrategy({
         newUser.email = email;
         newUser.password = newUser.encryptPassword(password);
         newUser.save(function (err, result) {
-        if(err){
-           return done(err);
-        }
-        return done(null, newUser);
-    });
+            if(err){
+                return done(err);
+            }
+            return done(null, newUser);
+        });
+
+
 });
 }));
 

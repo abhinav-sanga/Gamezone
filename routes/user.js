@@ -150,19 +150,38 @@ router.get('/collections', isLoggedIn, function (req, res, next) {
     }*/
     console.log(fromDate, toDate);
     if(req.user.isAdmin){
-        Card.find({
+         /* Card.find({
             createdAt: {
                 $gte: fromDate,
                 $lt: toDate
             }
-        }, function (err, docs) {
+        } , function (err, docs) {
             if(err){
                 //res.redirect('/user/profile');
                 res.send(err);
             } else {
                 console.log(docs);
             }
-        });
+        }); */
+         Card.aggregate([{ $match: {
+                  createdAt : {
+                      $gte: new Date(fromDate),
+                      $lt: new Date(toDate)
+                  }
+         }},{
+             $group: {
+                 _id: null,
+                 total: {
+                     $sum : "$amountRecharged"
+                 }}
+         }], function (err, docs) {
+             if(err){
+                 res.send(err);
+             } else{
+                 res.render('user/adminprofile',{ docs: docs[0].total } );
+                 console.log(docs);
+             }
+         });
     } else {
         res.redirect('/user/profile');
     }
@@ -172,8 +191,9 @@ router.get('/collections', isLoggedIn, function (req, res, next) {
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
     req.logout();
-    req.session.destroy();
+    req.flash("success","See you later!");
     res.redirect('/');
+    req.session.destroy();
 });
 
 router.use('/', notLoggedIn, function (req, res, next) {
@@ -221,7 +241,7 @@ function notLoggedIn(req, res, next) {
     if(!req.isAuthenticated()){
         return next();
     }
-    res.redirect('/');
+    res.redirect('/user/signin');
 }
 
 function ifAdmin(req,res,next) {

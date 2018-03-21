@@ -3,9 +3,11 @@
         <h3 class="hed">Password Recovery</h3>
         {{#if hasErrors}}
             <div class="alert alert-danger">
-                {{# each messages}}
-                    <p>{{this}}</p>
-                {{/each}}
+                <ul>
+                    {{# each messages}}
+                        <li>{{this}}</li>
+                    {{/each}}
+                </ul>
             </div>
         {{/if}}
         <form action="/user/forgot" method="post">

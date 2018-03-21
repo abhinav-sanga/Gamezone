@@ -10,9 +10,11 @@
                     <h3>Add Amount</h3>
                     {{#if hasErrors}}
                         <div class="alert alert-danger">
-                            {{# each messages}}
-                                <p>{{this}}</p>
-                            {{/each}}
+                            <ul>
+                                {{# each messages}}
+                                    <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
                         </div>
                     {{/if}}
                     {{#if flash.notice}}
@@ -47,7 +49,7 @@
                     <form action="" method="get">
                         <div class="form-group">
                             <label for="remAmount">Existing Amount</label>
-                            <input type="number" id="remAmount" name="remAmount" class="form-control">
+                            <input type="number" id="remAmount" name="remAmount" class="form-control" readonly>
                         </div>
                     </form>
                 </div>

@@ -17,3 +17,21 @@ a:hover {
 .hed {
     padding-bottom: 15px;
 }
+
+li {
+    list-style: none;
+}
+
+form {
+   padding-bottom:50px;
+}
+
+input[type="date"]:before{
+    color:lightgray;
+    content:attr(placeholder);
+}
+
+input[type="date"].full:before {
+    color:black;
+    content:""!important;
+}
