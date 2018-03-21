@@ -66,6 +66,7 @@ app.use(function (req, res, next) {
     res.locals.session = req.session;
     res.locals.currentUser = req.user;
     res.locals.dbs = db.collection('users');
+    res.locals.sessionFlash = req.session.sessionFlash;
     res.locals.messages = require('express-messages')(req,res);
     next();
 });

@@ -134,12 +134,15 @@ router.get('/profile', isLoggedIn, ifAdmin, ifOwner, function(req,res,next){
 });
 
 router.get('/collections', isLoggedIn, function (req, res, next) {
-    console.log('Getting all collections..');
+
     var fromDate = req.query.fromdate;
     var actualtoDate = req.query.todate;
     var toDate = new Date(actualtoDate);
     toDate.setDate(toDate.getDate()+1);
-
+    req.checkBody(fromDate,'Invalid Date').isEmpty();
+    req.checkBody(actualtoDate,'Invalid Date').isEmpty();
+    var errors = req.validationErrors();
+    console.log('Getting all collections..');
     /*function checktoDate() {
         if ((parseInt(toDate.slice(8, toDate.length + 1))) < 10) {
             toDate = toDate.slice(0, 8) + '0' + (parseInt(toDate.slice(8, toDate.length + 1)) + 1).toString();
@@ -177,13 +180,26 @@ router.get('/collections', isLoggedIn, function (req, res, next) {
          }], function (err, docs) {
              if(err){
                  res.send(err);
-             } else{
-                 res.render('user/adminprofile',{ docs: docs[0].total } );
-                 console.log(docs);
+                 res.redirect('/user/profile');
+             }
+             else {
+                 if(errors){
+                     var messages = [];
+                     errors.forEach(function (error) {
+                         messages.push(error.msg);
+                     });
+                     req.flash('error', messages);
+                     res.render('user/adminprofile', {messages: messages, hasErrors: messages.length > 0});
+                 }
+                 else if (docs.length == 0) {
+                     req.flash('notice', 'No recharges done in this period');
+                     res.render('user/adminprofile', {flash: {notice: req.flash('notice')}});
+                 } else {
+                     console.log(docs);
+                     res.render('user/adminprofile', {docs: docs[0].total});
+                 }
              }
          });
-    } else {
-        res.redirect('/user/profile');
     }
 
 });
