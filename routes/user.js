@@ -218,14 +218,14 @@ router.use('/', notLoggedIn, function (req, res, next) {
 
 
 /* GET users listing. */
-router.get('/signup', function(req,res,next){
+router.get('/addMember', function(req,res,next){
     var messages = req.flash('error');
     res.render('user/signup', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 });
 
-router.post('/signup', passport.authenticate('local-signup',{
+router.post('/addMember', passport.authenticate('local-signup',{
     successRedirect: '/user/profile',
-    failureRedirect: '/user/signup',
+    failureRedirect: '/user/addMember',
     failureFlash: true
 }));
 

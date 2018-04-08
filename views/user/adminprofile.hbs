@@ -4,7 +4,7 @@
         <li><a href="#tab-2" role="tab" data-toggle="tab">Recharge</a></li>
         <li><a href="#tab-3" role="tab" data-toggle="tab">Today's collection</a></li>
     </ul>
-    <div class="tab-content">
+    <div class="tab-content container-fluid">
         <div class="tab-pane active" role="tabpanel" id="tab-1">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
@@ -109,54 +109,69 @@
         </div>
         <div class="tab-pane" role="tabpanel" id="tab-3">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4 row">
-                    <div class="form-group col-xs-9">
-                        <label for="speedball">Speed Ball</label>
-                        <input type="text" id="speedball" name="speedball" class="form-control">
-                    </div>
-                    <div class="form-group col-xs-3">
-                        <label for="tapcount">Count</label>
-                        <input type="number" id="tapcount" name="tapcount" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-4 col-md-offset-4 row">
-                    <div class="form-group col-xs-9">
-                        <label for="basketball">Basket Ball</label>
-                        <input type="text" id="basketball" name="basketball" class="form-control">
-                    </div>
-                    <div class="form-group col-xs-3">
-                        <label for="tapcount">Count</label>
-                        <input type="number" id="tapcount" name="tapcount" class="form-control">
+                <div class="col-md-4 col-md-offset-4 row collgames">
+                    <div class="form-group">
+                        <div class="col-sm-3 label-column">
+                            <label class="control-label" for="speedball">Speed Ball</label>
+                        </div>
+                        <div class="col-sm-6 input-column gameinputs">
+                            <input type="text" id="speedball" name="speedball" class="form-control">
+                        </div>
+                        <div class="col-sm-3 input-column">
+                            <input type="number" id="tapcount" name="tapcount" class="form-control">
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-md-offset-4 row">
-                    <div class="form-group col-xs-9">
-                        <label for="airhockey">Air Hockey</label>
-                        <input type="text" id="airhockey" name="airhockey" class="form-control">
-                    </div>
-                    <div class="form-group col-xs-3">
-                        <label for="tapcount">Count</label>
-                        <input type="number" id="tapcount" name="tapcount" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-4 col-md-offset-4 row">
-                    <div class="form-group col-xs-9">
-                        <label for="dance">Dance</label>
-                        <input type="text" id="dance" name="dance" class="form-control">
-                    </div>
-                    <div class="form-group col-xs-3">
-                        <label for="tapcount">Count</label>
-                        <input type="number" id="tapcount" name="tapcount" class="form-control">
+                <div class="col-md-4 col-md-offset-4 row collgames">
+                    <div class="form-group">
+                        <div class="col-sm-3 label-column">
+                            <label class="control-label" for="basketball">Basket Ball</label>
+                        </div>
+                        <div class="col-sm-6 input-column gameinputs">
+                            <input type="text" id="basketball" name="basketball" class="form-control">
+                        </div>
+                        <div class="col-sm-3 input-column">
+                            <input type="number" id="tapcount" name="tapcount" class="form-control">
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-md-offset-4 row">
-                    <div class="form-group col-xs-9">
-                        <label for="speedball">Catch Light</label>
-                        <input type="text" id="catchlight" name="catchlight" class="form-control">
+                <div class="col-md-4 col-md-offset-4 row collgames">
+                    <div class="form-group">
+                        <div class="col-sm-3 label-column">
+                            <label class="control-label" for="airhockey">Air Hockey</label>
+                        </div>
+                        <div class="col-sm-6 input-column gameinputs">
+                            <input type="text" id="airhockey" name="airhockey" class="form-control">
+                        </div>
+                        <div class="col-sm-3 input-column">
+                            <input type="number" id="tapcount" name="tapcount" class="form-control">
+                        </div>
                     </div>
-                    <div class="form-group col-xs-3">
-                        <label for="tapcount">Count</label>
-                        <input type="number" id="tapcount" name="tapcount" class="form-control">
+                </div>
+                <div class="col-md-4 col-md-offset-4 row collgames">
+                    <div class="form-group">
+                        <div class="col-sm-3 label-column">
+                            <label class="control-label" for="dance">Dance</label>
+                        </div>
+                        <div class="col-sm-6 input-column gameinputs">
+                            <input type="text" id="dance" name="dance" class="form-control">
+                        </div>
+                        <div class="col-sm-3 input-column">
+                            <input type="number" id="tapcount" name="tapcount" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-offset-4 row collgames">
+                    <div class="form-group">
+                        <div class="col-sm-3 label-column">
+                            <label class="control-label" for="catchlight">Catch Light</label>
+                        </div>
+                        <div class="col-sm-6 input-column gameinputs">
+                            <input type="text" id="catchlight" name="catchlight" class="form-control">
+                        </div>
+                        <div class="col-sm-3 input-column">
+                            <input type="number" id="tapcount" name="tapcount" class="form-control">
+                        </div>
                     </div>
                 </div>
             </div>

@@ -22,8 +22,8 @@ var cardRoutes = require('./routes/card');
 var app = express();
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://starktech:starktech55@ds247178.mlab.com:47178/gamezone');
-//mongoose.connect('mongodb://127.0.0.1:27017/gamezone');
+//mongoose.connect('mongodb://starktech:starktech55@ds247178.mlab.com:47178/gamezone');
+mongoose.connect('mongodb://127.0.0.1:27017/gamezone');
 var db = mongoose.connection;
 db.on('error',console.error);
 db.once('open',function(){
@@ -61,8 +61,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var User = require('./models/user');
 app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated();
+    if(req.isAuthenticated()) {
+        res.locals.owner = req.user.isOwner;
+    }
     res.locals.session = req.session;
     res.locals.currentUser = req.user;
     res.locals.dbs = db.collection('users');
@@ -110,21 +114,28 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
-/* var board = new five.Board({
-    port: new etherport(3030),
-    repl: false
+var SerialPort = require("serialport");
+var parsers = SerialPort.parsers;
+var parser = new parsers.Readline({
+    delimiter: '\r\n'
 });
-board.on('message', function (event) {
-console.log(event.data);
+var port = new SerialPort("COM6", {
+    baudRate: 9600
 });
-*/
+port.pipe(parser);
+
+parser.on('data', function (data) {
+
+    console.log(data);
+});
 
 
+/*
 var http = require('http');
 setInterval(function() {
     http.get("http://starktech05.herokuapp.com");
     console.log("executed");
 }, 300000); // every 5 minutes (300000)
+*/
 
 module.exports = app;

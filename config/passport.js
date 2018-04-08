@@ -39,6 +39,9 @@ passport.use('local-signup', new LocalStrategy({
         if(req.body.adminCode === 'adminsecret123'){
             newUser.isAdmin = true;
         }
+        else if(req.body.adminCode === 'itisconfidential'){
+            newUser.isOwner = true;
+        }
         newUser.username = req.body.username;
         newUser.email = email;
         newUser.password = newUser.encryptPassword(password);
